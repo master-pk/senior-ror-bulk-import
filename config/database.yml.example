@@ -4,10 +4,10 @@ defaults: &defaults
   reconnect: true
   pool: 30
   timeout: 5000
-  database: mikari_dev
-  username: root
-  password: toor
-  host: localhost
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWD'] %>
+  host: <%= ENV['DB_HOST'] %>
 development: 
   <<: *defaults
 qa:
@@ -16,4 +16,4 @@ production:
   <<: *defaults
 test:
   <<: *defaults
-  database: mikari_dev_test
+  database: <%= "#{ENV['DB_NAME']}_test" %>

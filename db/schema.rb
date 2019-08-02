@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2019_05_20_082356) do
 
-  create_table "companies", force: :cascade do |t|
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "employees", force: :cascade do |t|
+  create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "phone"
-    t.integer "company_id"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
@@ -33,19 +33,21 @@ ActiveRecord::Schema.define(version: 2019_05_20_082356) do
     t.index ["company_id"], name: "index_employees_on_company_id"
   end
 
-  create_table "employees_policies", id: false, force: :cascade do |t|
-    t.integer "employee_id", null: false
-    t.integer "policy_id", null: false
+  create_table "employees_policies", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.bigint "policy_id", null: false
     t.index ["employee_id", "policy_id"], name: "index_employees_policies_on_employee_id_and_policy_id"
     t.index ["policy_id", "employee_id"], name: "index_employees_policies_on_policy_id_and_employee_id"
   end
 
-  create_table "policies", force: :cascade do |t|
+  create_table "policies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.integer "company_id"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_policies_on_company_id"
   end
 
+  add_foreign_key "employees", "companies"
+  add_foreign_key "policies", "companies"
 end
