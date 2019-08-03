@@ -38,3 +38,15 @@ User can upload employee data by going to a new page. This new page will have a 
 * You may install gems that you need
 * You may change the current implementation if needed or make assumptions you want.
 * Readme
+
+## My Implementation:
+
+* Created a model FileUpload, which will track the FileUploads in the system. FileUpload is polymorphic to support files of different types for e.g Company
+* Created a page to upload Company employees csv.
+* When file is uploaded a message is shown to user and file is sent in background for processing. For background jobs, I used sidekiq.
+* File processing is divided in two steps - Validation and Creation
+* Since file can have millions of rows, distributed file processing is used. E.g if file has 2million rows, 20 jobs with 100K records each will process it concurrently.
+* Batches are used for fetching and inserting data into MySQL.
+* Redis is used for syncing among the jobs and handling the dependent job of linking mangers to employees.
+* I have added comments in the code where required.
+* For showing errors, I have added the error log along with status in FileUpload. When the processing is completed the status is updated accordingly. In case of error, a log file is also attached to show errors in the rows.
