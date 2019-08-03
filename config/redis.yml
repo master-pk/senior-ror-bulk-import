@@ -1,0 +1,24 @@
+---
+defaults: &defaults
+  :driver: :hiredis
+  :namespace: mikari
+  :host: localhost
+  :db: 0
+  :services:
+    :local_cache:
+      :db: 0
+    :sidekiq:
+      :db: 1
+    :rails_cache:
+      :db: 3
+development:
+  <<: *defaults
+  :services:
+    :local_cache:
+      :db: 0
+    :sidekiq:
+      :db: 1
+    :rails_cache:
+      :db: 3
+test:
+  <<: *defaults

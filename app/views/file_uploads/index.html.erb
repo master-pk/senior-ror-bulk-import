@@ -1,0 +1,36 @@
+<h1>File Uploads</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File Name</th>
+      <th>File Type</th>
+      <th>Status</th>
+      <th>Log File</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @file_uploads.each do |file_upload| %>
+      <tr>
+        <td>
+          <%= link_to file_upload.data_file.blob.filename, url_for(file_upload&.data_file) %>
+        </td>
+        <td>
+          <%= file_upload.attachable_type %>
+        </td>
+        <td>
+          <%= file_upload.status.humanize %>
+        </td>
+        <td>
+          <%= link_to "Log file", url_for(file_upload&.error_log_file) if file_upload.error_log_file.attached? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<%= link_to 'New Company File Upload', new_file_upload_path %>

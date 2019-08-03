@@ -53,3 +53,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'awesome_nested_set'
+
+gem 'csv'
+gem 'sidekiq'
+gem 'redis-namespace'
+gem 'hiredis'
+gem 'redis'
+gem 'activerecord-import'

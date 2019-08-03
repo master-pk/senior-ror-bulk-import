@@ -1,0 +1,13 @@
+<h1>Upload Employees File For Companies</h1>
+
+<% if @file_upload.errors.any? %>
+  <% @file_upload.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+<% end %>
+
+<%= form_for @file_upload do |f| %>
+  <%= f.collection_select(:attachable_id, @companies, :id, :name, {:include_blank => "Please select"}) %>
+  <%= f.file_field :data_file %>
+  <%= f.submit "Upload", class: "btn btn-info" %>
+<% end %>
