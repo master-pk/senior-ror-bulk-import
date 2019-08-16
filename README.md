@@ -50,3 +50,4 @@ User can upload employee data by going to a new page. This new page will have a 
 * Redis is used for syncing among the jobs and handling the dependent job of linking mangers to employees.
 * I have added comments in the code where required.
 * For showing errors, I have added the error log along with status in FileUpload. When the processing is completed the status is updated accordingly. In case of error, a log file is also attached to show errors in the rows.
+* Added Rspecs - **rspec --tag file_upload_test spec -fd** Existing specs are not fixed.

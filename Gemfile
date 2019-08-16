@@ -37,6 +37,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
+end
+
+group :test do
+  gem 'rspec-sidekiq'
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 group :development do
